@@ -1,0 +1,36 @@
+-- Crear base de datos
+CREATE DATABASE tienda_musica;
+
+-- Usar la base de datos
+USE tienda_musica;
+
+-- Crear tabla de productos
+CREATE TABLE productos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    descripcion TEXT NOT NULL,
+    precio DECIMAL(10, 2) NOT NULL,
+    imagen_url VARCHAR(255),
+    categoria VARCHAR(100)
+);
+
+-- Insertar productos (solo 5 productos)
+INSERT INTO productos (nombre, descripcion, precio, imagen_url, categoria) VALUES
+('Guitarra Eléctrica Fender', 'Guitarra eléctrica clásica Fender Stratocaster. Excelente sonido.', 499.99, 'images/guitarra.webp', 'Instrumentos'),
+('Piano Yamaha', 'Piano de cola Yamaha, sonido profesional para conciertos.', 2499.99, 'images/piano.jpg', 'Instrumentos'),
+('Bajo Ibanez', 'Bajo eléctrico Ibanez, ideal para músicos de jazz y rock.', 349.99, 'images/bajo.jpg', 'Instrumentos'),
+('Vinilo The Beatles', 'Vinilo original de The Beatles, edición limitada.', 29.99, 'images/vinilo.webp', 'Accesorios'),
+('Micrófono Shure', 'Micrófono Shure SM7B, ideal para grabaciones profesionales.', 399.99, 'images/microfono.avif', 'Accesorios');
+
+-- Crear tabla de usuarios
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_usuario VARCHAR(50) NOT NULL,
+    correo VARCHAR(100) NOT NULL,
+    contrasena VARCHAR(255) NOT NULL,
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Insertar un usuario de ejemplo (la contraseña se guarda cifrada)
+INSERT INTO usuarios (nombre_usuario, correo, contrasena) 
+VALUES ('juanperez', 'juanperez@email.com', SHA2('contraseña123', 256));
